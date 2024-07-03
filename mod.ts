@@ -26,6 +26,11 @@ export default function compressPng (): Plugin {
     name: 'vite-plugin-compress-png',
      
     async writeBundle(output) {
+      if (hasReported) {
+        // 已经检测到 pngquant 工具不存在
+        return
+      }
+
       const resolvedOrNull = await which('pngquant', { nothrow: true });
       if (resolvedOrNull === null && !hasReported) {
         console.log('未找到图片压缩工具pngquant');
