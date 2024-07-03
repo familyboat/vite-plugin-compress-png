@@ -1,5 +1,12 @@
 {
   "name": "@vite-plugin/compress-png",
   "version": "0.1.4",
-  "exports": "./mod.ts"
+  "exports": "./mod.ts",
+  "publish": {
+    "include": [
+      "deno.json",
+      "mod.ts",
+      "README.md"
+    ]
+  }
 }
