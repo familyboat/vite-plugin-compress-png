@@ -12,8 +12,8 @@
 import { promises as fs } from "node:fs";
 import { join } from "node:path";
 import { exec } from 'node:child_process';
-import which from 'npm:which@4.0.0';
-import type { Plugin } from 'npm:vite@5.3.3';
+import which from 'which';
+import type { Plugin } from 'vite';
 
 const fileRegex = /\.(png)$/
 let hasReported = false;

@@ -8,5 +8,6 @@
       "mod.ts",
       "README.md"
     ]
-  }
+  },
+  "imports": { "vite": "npm:vite@^5.3.3", "which": "npm:which@^4.0.0" }
 }
