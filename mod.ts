@@ -33,7 +33,7 @@ export default function compressPng (): Plugin {
         return;
       }
       const dir = output.dir;
-      if (dir === undefined) {
+      if (!dir) {
         return
       }
       const assetsPath = join(dir, "assets");
