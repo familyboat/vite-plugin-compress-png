@@ -3,6 +3,10 @@
  * 
  * 本模块是 vite 插件，使用 pngquant 工具对 png
  * 格式的图片进行压缩
+ * 
+ * @example
+ * ```
+ * ```
  */
 
 import { promises as fs } from "node:fs";
