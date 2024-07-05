@@ -8,14 +8,10 @@
  * ```
  * ```
  */
-
-import { promises as fs } from "node:fs";
-import { join } from "node:path";
 import { exec } from 'node:child_process';
 import which from 'which';
 import type { Plugin } from 'vite';
-
-const fileRegex = /\.(png)$/
+import { filter } from "./filter.ts";
 
 /**
  * 使用 pngquant 压缩 png 图片
@@ -30,19 +26,16 @@ export default function compressPng (): Plugin {
         console.log('未找到图片压缩工具pngquant');
         return;
       }
+
       const dir = output.dir;
       if (!dir) {
         return
       }
-      const assetsPath = join(dir, "assets");
-      const imageFiles = await fs.readdir(assetsPath);
-      const compressedImages = imageFiles.filter((file: string) =>
-        fileRegex.test(file)
-      );
 
-      for (const imageFile of compressedImages) {
-        const inputPath = join(assetsPath, imageFile);
-        exec(`pngquant --force --ext .png --quality 80 ${inputPath}`);
+      const compressed = await filter(dir);
+
+      for (const imageFile of compressed) {
+        exec(`pngquant --force --ext .png --quality 80 ${imageFile}`);
       }
     },
   }
