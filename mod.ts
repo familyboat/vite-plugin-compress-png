@@ -34,14 +34,14 @@ export default function compressPng (): Plugin {
       if (!dir) {
         return
       }
-      const assetsPath = dir;
-      const imageFiles = await fs.readdir(assetsPath);
+
+      const imageFiles = await fs.readdir(dir);
       const compressedImages = imageFiles.filter((file: string) =>
         fileRegex.test(file)
       );
 
       for (const imageFile of compressedImages) {
-        const inputPath = join(assetsPath, imageFile);
+        const inputPath = join(dir, imageFile);
         exec(`pngquant --force --ext .png --quality 80 ${inputPath}`);
       }
     },
