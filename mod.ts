@@ -34,7 +34,7 @@ export default function compressPng (): Plugin {
       if (!dir) {
         return
       }
-      const assetsPath = join(dir, "assets");
+      const assetsPath = dir;
       const imageFiles = await fs.readdir(assetsPath);
       const compressedImages = imageFiles.filter((file: string) =>
         fileRegex.test(file)
