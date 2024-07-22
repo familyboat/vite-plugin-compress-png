@@ -1,0 +1,24 @@
+name: ci
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Deno
+      uses: denoland/setup-deno@v1
+      with:
+        deno-version: '1.x' # 根据你的项目需求调整 Deno 版本
+
+    - name: Run tests
+      run: deno task test # 根据你的测试命令调整
+
+    - name: Run lint
+      run: deno task lint # 根据你的 lint 命令调整
