@@ -1,6 +1,6 @@
 {
   "name": "@vite-plugin/compress-png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "tasks": {
     "test": "deno test --allow-all --trace-leaks",
     "lint": "deno lint"
