@@ -13,10 +13,18 @@ import which from 'which';
 import type { Plugin } from 'vite';
 import { filter } from "./filter.ts";
 
+export type CompressPngType = {
+  pattern: string | string[]
+}
+
+const defaultOptions: CompressPngType = {
+  pattern: '**/*.png'
+}
+
 /**
  * 使用 pngquant 压缩 png 图片
  */
-export default function compressPng (): Plugin {
+export default function compressPng (options: CompressPngType = defaultOptions): Plugin {
   return {
     name: 'vite-plugin-compress-png',
      
@@ -32,7 +40,7 @@ export default function compressPng (): Plugin {
         return
       }
 
-      const compressed = await filter(dir);
+      const compressed = await filter(dir, options.pattern);
 
       for (const imageFile of compressed) {
         exec(`pngquant --force --ext .png --quality 80 ${imageFile}`);
